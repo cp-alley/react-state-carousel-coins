@@ -22,19 +22,21 @@ function Carousel({ photos, title }) {
 
   //Increments currCardIdx state by 1
   function goForward() {
-    setCurrCardIdx(currCardIdx + 1);
+    if (currCardIdx !== total - 1) setCurrCardIdx(currCardIdx + 1);
   }
 
   //Decrements currCardIdx state by 1
   function goBackward() {
-    setCurrCardIdx(currCardIdx - 1);
+    if (currCardIdx !== 0) setCurrCardIdx(currCardIdx - 1);
   }
+
+  // TODO: Look into visibility - CSS styling element
 
   return (
     <div className="Carousel">
       <h1>{title}</h1>
       <div className="Carousel-main">
-        {currCardIdx !== 0 &&
+        {currCardIdx !== 0 && // TODO: Consider assigning this to a variable for checking this condition.
           <i
             className="bi bi-arrow-left-circle"
             onClick={goBackward}

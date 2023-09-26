@@ -10,6 +10,17 @@ describe("Carousel", function () {
     />);
   });
 
+  test("matches snapshot", function () {
+    const { container, debug } = render(
+      <Carousel
+        photos={TEST_IMAGES}
+        title="images for testing"
+      />
+    );
+    debug(container);
+    expect(container).toMatchSnapshot();
+  });
+
   test("works when you click on the right arrow", function () {
     const { container } = render(
       <Carousel
@@ -71,7 +82,7 @@ describe("Carousel", function () {
     ).toBeInTheDocument();
   });
 
-  test("hides left arrow when you load initially (at first img)", function () {
+  test("hides and shows left/right arrows with correct logic", function () {
     const { container } = render(
       <Carousel
         photos={TEST_IMAGES}
@@ -95,14 +106,4 @@ describe("Carousel", function () {
     expect(rightArrow).not.toBeInTheDocument();
   });
 
-  test("matches snapshot", function () {
-    const { container, debug } = render(
-      <Carousel
-        photos={TEST_IMAGES}
-        title="images for testing"
-      />
-    );
-    debug(container);
-    expect(container).toMatchSnapshot();
-  });
 });
