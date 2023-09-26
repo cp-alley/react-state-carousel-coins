@@ -15,5 +15,13 @@ describe("Card", function () {
     render(<Card {...testCard}/>);
   });
 
+  test("matches snapshot", function () {
+    const { container, debug } = render(
+      <Card  {...testCard}/>
+    );
+    debug(container);
+    expect(container).toMatchSnapshot();
+  });
+
 
 });
