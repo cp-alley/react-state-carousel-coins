@@ -4,14 +4,14 @@ import Card from "./Card";
 
 
 /** Carousel: displays images and arrows to navigate through them
- * 
+ *
  * Props:
  * - photos: array of {src, caption} objects
  * - title: string describing the collection of images
- * 
+ *
  * State:
  * - currCardIdx: integer for current card index
- * 
+ *
  * App --> Carousel --> Card
  */
  function Carousel({ photos, title }) {
@@ -23,6 +23,10 @@ import Card from "./Card";
   //Increments currCardIdx state by 1
   function goForward() {
     setCurrCardIdx(currCardIdx + 1);
+  }
+
+  function goBackward() {
+    setCurrCardIdx(currCardIdx - 1);
   }
 
   return (
@@ -41,7 +45,7 @@ import Card from "./Card";
         />
         <i
           className="bi bi-arrow-right-circle"
-          onClick={goForward}
+          onClick={goBackward}
         />
       </div>
     </div>
@@ -49,3 +53,6 @@ import Card from "./Card";
 }
 
 export default Carousel;
+
+// current card index + 1 % cards length
+//  2 + 1 % 3 = 0
