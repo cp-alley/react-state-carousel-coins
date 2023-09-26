@@ -2,39 +2,50 @@ import { render, fireEvent } from "@testing-library/react";
 import Carousel from "./Carousel";
 import TEST_IMAGES from "./_testCommon.js";
 
-// describe("Carousel", function () {
-//   test("renders with errors", function () {
-//     render(<Carousel
-//       photos={TEST_IMAGES}
-//       title="images for testing"
-//     />);
-//   });
-// });
-
-it("works when you click on the right arrow", function () {
-  const { container } = render(
-    <Carousel
+describe("Carousel", function () {
+  test("renders without errors", function () {
+    render(<Carousel
       photos={TEST_IMAGES}
       title="images for testing"
-    />
-  );
-  // expect the first image to show, but not the second
-  expect(
-    container.querySelector('img[alt="testing image 1"]')
-  ).toBeInTheDocument();
-  expect(
-    container.querySelector('img[alt="testing image 2"]')
-  ).not.toBeInTheDocument();
+    />);
+  });
 
-  // move forward in the carousel
-  const rightArrow = container.querySelector(".bi-arrow-right-circle");
-  fireEvent.click(rightArrow);
+  test("works when you click on the right arrow", function () {
+    const { container } = render(
+      <Carousel
+        photos={TEST_IMAGES}
+        title="images for testing"
+      />
+    );
+    // expect the first image to show, but not the second
+    expect(
+      container.querySelector('img[alt="testing image 1"]')
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('img[alt="testing image 2"]')
+    ).not.toBeInTheDocument();
 
-  // expect the second image to show, but not the first
-  expect(
-    container.querySelector('img[alt="testing image 1"]')
-  ).not.toBeInTheDocument();
-  expect(
-    container.querySelector('img[alt="testing image 2"]')
-  ).toBeInTheDocument();
+    // move forward in the carousel
+    const rightArrow = container.querySelector(".bi-arrow-right-circle");
+    fireEvent.click(rightArrow);
+
+    // expect the second image to show, but not the first
+    expect(
+      container.querySelector('img[alt="testing image 1"]')
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector('img[alt="testing image 2"]')
+    ).toBeInTheDocument();
+  });
+
+  test("matches snapshot", function () {
+    const { container, debug } = render(
+      <Carousel
+        photos={TEST_IMAGES}
+        title="images for testing"
+      />
+    );
+    debug(container);
+    expect(container).toMatchSnapshot();
+  });
 });
