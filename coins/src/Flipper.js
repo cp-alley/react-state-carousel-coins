@@ -1,5 +1,6 @@
 import Coin from "./Coin";
 import flipCoin from "./flip";
+import { useState } from "react";
 
 /** Flips a coin and keeps track of heads and tails
  *
